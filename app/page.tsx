@@ -38,7 +38,7 @@ export default async function Home() {
             {profile.skills.map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800 rounded-full font-semibold"
+                className="px-4 py-2 bg-linear-to-r from-blue-100 to-purple-100 text-gray-800 rounded-full font-semibold"
               >
                 {skill}
               </span>

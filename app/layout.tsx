@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./navbar/page";
 import Footer from "./footer/page";
+import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from '@/context/AuthContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,13 +34,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable}`}>
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </AuthProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
